@@ -1,0 +1,56 @@
+MODEL METRICS DOCUMENTATION
+PROBLEM IDENTIFICATION OVERVIEW
+* DEFINE THE QUESTION SPECIFIC TO MODELING ACTIVITIES – DEVICE FAILURES PREDICTION
+Convolutional neural networks are usually used for 2D classification such as images but are great for classifying texts as well. As text data is one dimensional, this calls for the use of a one-dimensional convolutional network which can be employed with the Conv1D function and added to the convolutional network model for it to be compatible with text data.
+* IDENTIFY THE DATA NEEDED OR AVAILABLE
+For the sentimental analysis technique used with deep learning, only two features are needed; one feature containing the text data, and the other feature containing the labels which need to be converted in a binary format as an integer data type. For the purposes of this problem, only datasets exclusively from Twitter will be sourced as well. 
+* DEFINE THE DATA TIME FRAME
+Dates unknown.
+* DESCRIBE THE MODELING RESPONSE
+Binary classification problem of separating tweets between emergency and non-emergency. However, the modeling responses are loss and accuracy in predicting the correct label.
+* UNSUPERVISED OR SUPERVISED CLASSIFICATION OR REGRESSION MODEL
+Supervised Classification.
+* WHAT DELIVERABLES WILL BE GENERATED
+The loss and accuracy results of the train sets which are further split up into the ‘training set’ and the ‘validation set’. The loss and accuracy results of the prediction set, or test set as well. Plots of the accuracy and loss we be delivered for visualization purposes and two charts of n-grams to provide an idea of 2- and 3-word clusters that are most frequently occurring in the text data.
+* DATA PREPROCESSING STEPS OF NOTE
+1. Dropped three columns that were not necessary for the problem identification and kept only the two columns that were: the text column containing the texts and the target column containing the binary labels.
+2. Created remove tag function that removes any html tags from within the texts.
+3. Created a preprocessor function that further removes punctuations, numbers, single characters, and multiple spaces.
+* MODEL DESCRIPTION
+1. 7613 Rows. 2 Columns. The features are as follows: Text; Target.
+2. Model Algorithm: CNN – Convolutional Neural Network.
+Embedding Layer -- Parameters
+i. input_dim: parameter with argument ‘vocab_size’ of tokenizer object consisting of 5000 words.
+ii. output_dim: parameter with argument of 100 to create vector dimensions.
+iii. weights: parameter with embedded matrix as the argument consisting of number or rows corresponding to number of words and columns set at 100 which contain the Glove word embeddings.
+iv. input_length: parameter set at ‘maxlen’ as the argument which is the max length of the list; no more than 100.
+v. trainable: parameter set to False since the embedding layer was not trained but the Glove embeddings were used instead.
+One-dimensional Convolutional Layer – Parameters
+i. filters: parameter set to 128 features or kernels as the argument. The dimensionality of the output space.
+ii. kernel size: parameter which is set to 5 as the argument. It specifies the length of the 1D convolution window.
+iii. activation: parameter which sets the activation function; the argument is set to ‘relu’ or rectified linear unit.
+Global Max Pooling Layer: an operation for one-dimensional temporal data. This layer was added to reduce the feature size.
+Dense Layer – Parameters
+i. units: set to 1 as the argument; the dimensionality of the output space.
+ii. activation: parameter which sets the activation function; the argument is set to sigmoid.
+* MODEL PERFORMANCE 
+i. Training set: train and validation sets
+Loss and acc corresponds to training set and val_loss and val_acc to validation set.
+Epoch 1/6
+39/39 [==============================] - 4s 71ms/step - loss: 0.5133 - acc: 0.7525 - val_loss: 0.4773 - val_acc: 0.7767
+Epoch 2/6
+39/39 [==============================] - 2s 60ms/step - loss: 0.3977 - acc: 0.8206 - val_loss: 0.4657 - val_acc: 0.7874
+Epoch 3/6
+39/39 [==============================] - 2s 53ms/step - loss: 0.3595 - acc: 0.8448 - val_loss: 0.4560 - val_acc: 0.7939
+Epoch 4/6
+39/39 [==============================] - 2s 52ms/step - loss: 0.3203 - acc: 0.8670 - val_loss: 0.4558 - val_acc: 0.7972
+Epoch 5/6
+39/39 [==============================] - 2s 57ms/step - loss: 0.2892 - acc: 0.8871 - val_loss: 0.4574 - val_acc: 0.7956
+Epoch 6/6
+39/39 [==============================] - 2s 52ms/step - loss: 0.2604 - acc: 0.9056 - val_loss: 0.4926 - val_acc: 0.7742
+ii. Test set: known as prediction set as well
+48/48 [==============================] - 0s 5ms/step - loss: 0.4824 - acc: 0.7774
+* MODEL FINDINGS
+Only two features are necessary and relevant here: the Text feature containing the texts and the Target feature containing the binary labels. The values in the Text feature need to be cleaned and preprocessed and the values in the Target feature need to be classifications of a binary nature and converted to an integer datatype.
+
+
